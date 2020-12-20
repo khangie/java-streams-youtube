@@ -10,9 +10,9 @@ public class Main {
   public static void main(String[] args) {
     List<Person> people = getPeople();
 
-    // Imperative approach ❌
-
     /*
+
+    // Imperative approach ❌
 
     List<Person> females = new ArrayList<>();
 
@@ -25,7 +25,7 @@ public class Main {
 
     females.forEach(System.out::println);
 
-    */
+
 
     // Declarative approach ✅
 
@@ -79,12 +79,23 @@ public class Main {
 //      System.out.println();
 //    });
 
-    Optional<String> oldestFemaleAge = people.stream()
-        .filter(person -> person.getGender().equals(Gender.FEMALE))
-        .max(Comparator.comparing(Person::getAge))
-        .map(Person::getName);
+*/
 
+    // Find the oldest female and print the result of the object.
+    Optional<Person> oldestFemaleAge = people.stream()
+        .filter(person -> person.getGender().equals(Gender.FEMALE))
+        .max(Comparator.comparing(Person::getAge));
     oldestFemaleAge.ifPresent(System.out::println);
+
+    // Find the oldest female and print only the name of the person.
+    // The map function takes the name and puts it in the String result.
+    Optional<String> oldestFemaleAge1 = people.stream()
+            .filter(person -> person.getGender().equals(Gender.FEMALE))
+            .max(Comparator.comparing(Person::getAge))
+            .map(Person::getName);
+
+    oldestFemaleAge1.ifPresent(System.out::println);
+
   }
 
   private static List<Person> getPeople() {
